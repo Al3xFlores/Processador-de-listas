@@ -9,13 +9,12 @@ def processar_lista(caminho_arquivo):
         # Ler cada linha do arquivo
         for linha in arquivo:
             # Extrair CPFs e CNPJs usando expressão regular
-            cpfs_cnpjs = re.findall(r'\d{11}|\d{14}', linha)
+            cpfs_cnpjs = re.findall(r'\d{11}|\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}', linha)
 
             # Adicionar CPFs e CNPJs à lista
             cpf_cnpj_lista.extend(cpfs_cnpjs)
 
     # Remover caracteres indesejados e duplicados
-    cpf_cnpj_lista = [re.sub(r'\D', '', item) for item in cpf_cnpj_lista]
     cpf_cnpj_lista = list(set(cpf_cnpj_lista))
 
     return cpf_cnpj_lista
